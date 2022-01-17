@@ -1,8 +1,8 @@
-import ButtonLogout from "../UI/ButtonLogout";
+import ButtonLogout from "../components/UI/ButtonLogout";
 import { Fragment, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Header from "../UI/Header";
-import AuthContext from "../../context/auth-context";
+import Header from "../components/UI/Header";
+import AuthContext from "../context/auth-context";
 
 const Layout = props => {
     const authContext = useContext(AuthContext);

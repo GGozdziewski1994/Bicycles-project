@@ -1,4 +1,4 @@
-import Bikes from '../Bikes/BikesItem';
+import Bikes from '../components/Bikes/BikesItem';
 
 const BikesPage = () => {
     return(

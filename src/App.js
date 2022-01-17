@@ -1,8 +1,8 @@
-import Layout from "./components/pages/Layout";
-import AuthPage from "./components/pages/AuthPage";
+import Layout from "./pages/Layout";
+import AuthPage from "./pages/AuthPage";
 import { Routes, Route } from 'react-router-dom';
-import HomePage from "./components/pages/HomePage";
-import BikesPage from "./components/pages/BikesPage";
+import HomePage from "./pages/HomePage";
+import BikesPage from "./pages/BikesPage";
 
 const App = () => {
   return (
