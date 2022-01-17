@@ -1,0 +1,39 @@
+.one button + button + button + button + button {
+    color: #e7ff00;
+}
+
+.one :nth-child(-n+4) {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.two button + button + button + button {
+    color: #e7ff00;
+}
+
+.two :nth-child(-n+3) {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.three button + button + button {
+    color: #e7ff00;
+}
+
+.three :nth-child(-n+2) {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.four button + button {
+    color: #e7ff00;
+}
+
+.four :nth-child(-n+1) {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.five button {
+    color: #e7ff00;
+}
+
+.all :nth-child(1n) {
+    color: rgba(255, 255, 255, 0.45);
+}
