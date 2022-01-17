@@ -1,11 +1,11 @@
 import { Fragment, useContext, useRef, useState, useCallback } from "react";
-import { API_KEY } from "../../API_KEY/ApiKey";
 import ErrorModal from "../UI/ErrorModal";
 import { useNavigate } from 'react-router-dom';
 import SectionAuth from "../UI/SectionAuth";
 import AuthContext from "../../context/auth-context";
 import useForm from '../../hooks/use-form';
 import fetchData from './fetchData';
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 const AuthForm = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -56,6 +56,8 @@ const AuthForm = () => {
         let url;
         if(isLogin) url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`;
         else url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`;
+
+        console.log(url);
 
         setError(null);
         setIsLoading(true);
