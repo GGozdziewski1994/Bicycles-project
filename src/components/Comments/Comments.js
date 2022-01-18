@@ -3,6 +3,7 @@ import ButtonComment from "../UI/ButtonComment";
 import { useRef, useCallback, useContext } from 'react';
 import AuthContext from "../../context/auth-context";
 import useHttp from '../../hooks/use-http';
+import { EDIT, IS_EDIT, REMOVE } from '../../constants/reducerBikesItemConstants';
 
 const Comments = props => {
   const { comments, onDispatchBikes } = props;
@@ -19,12 +20,12 @@ const Comments = props => {
   }, [sendRequest]);
 
   const isEditHandler = event => {
-    onDispatchBikes({type: 'IS_EDIT', id: event.target.id, idComment: event.target.attributes.data.value});
+    onDispatchBikes({type: IS_EDIT, id: event.target.id, idComment: event.target.attributes.data.value});
   };
 
   const removeCommentHandler = event => {
     onDispatchBikes({
-      type: 'REMOVE', 
+      type: REMOVE, 
       id: event.target.id, 
       idComment: event.target.attributes.data.value,
       removeComment: requestComment,
@@ -35,7 +36,7 @@ const Comments = props => {
     event.preventDefault();
 
     onDispatchBikes({
-      type: 'EDIT',
+      type: EDIT,
       id: event.target.id,
       idComment: event.target.attributes.data.value,
       value: commentInputRef.current.value,

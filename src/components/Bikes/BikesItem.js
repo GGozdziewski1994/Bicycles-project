@@ -5,18 +5,19 @@ import { useCallback, useEffect, useReducer, useState, useContext } from "react"
 import useHttp from "../../hooks/use-http";
 import AuthContext from "../../context/auth-context";
 import ErrorModal from "../UI/ErrorModal";
+import { ALL, MALE, FEMALE } from '../../constants/reducerFilterConstants';
 
-const filterReducer = (state, action) => {
-    if(action.type === 'ALL') {
+const reducerFilter = (state, action) => {
+    if(action.type === ALL) {
         return {...action.bikes}
     }
 
-    if(action.type === 'MALE') {
+    if(action.type === MALE) {
         const filter = action.bikes.bikes.filter(bike => bike.type === 'male');
         return {bikes: [...filter]};
     }
 
-    if(action.type === 'FEMALE') {
+    if(action.type === FEMALE) {
         const filter = action.bikes.bikes.filter(bike => bike.type === 'female');
         return {bikes: [...filter]};
     }
@@ -27,7 +28,7 @@ const filterReducer = (state, action) => {
 const BikesPage = () => {
     const [isAddNew, setIsAddNew] = useState(false);
     const { isLoading, error, data, sendRequest, cleanError } = useHttp();
-    const [filterState, dispatchFilter] = useReducer(filterReducer, {});
+    const [filterState, dispatchFilter] = useReducer(reducerFilter, {});
     const [dataBikes, setDataBikes] = useState({});
     const isAdminContext = useContext(AuthContext).isAdmin;
     const url = 'https://bikesapp-gg-default-rtdb.europe-west1.firebasedatabase.app/bikes.json';
@@ -71,15 +72,15 @@ const BikesPage = () => {
     };
 
     const allFilterHandler = () => {
-        dispatchFilter({type: 'ALL', bikes: dataBikes});
+        dispatchFilter({type: ALL, bikes: dataBikes});
     };
 
     const maleFilterHandler = () => {
-        dispatchFilter({type: 'MALE', bikes: dataBikes});
+        dispatchFilter({type: MALE, bikes: dataBikes});
     };
 
     const femaleFilterHandler = () => {
-        dispatchFilter({type: 'FEMALE', bikes: dataBikes});
+        dispatchFilter({type: FEMALE, bikes: dataBikes});
     };
 
     return(

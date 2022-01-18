@@ -1,0 +1,9 @@
+export const FILTER = 'FILTER';
+export const IS_COMMENT = 'IS_COMMENT';
+export const COMMENT = 'COMMENT';
+export const HIDE_COMMENT = 'HIDE_COMMENT';
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const SEND_RATING = 'SEND_RATING';
+export const IS_EDIT = 'IS_EDIT';
+export const EDIT = 'EDIT';
+export const REMOVE = 'REMOVE';

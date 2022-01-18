@@ -3,6 +3,7 @@ import ButtonComment from "../UI/ButtonComment";
 import { useRef, useCallback, useContext } from "react";
 import AuthContext from "../../context/auth-context";
 import useHttp from '../../hooks/use-http';
+import { ADD_COMMENT } from '../../constants/reducerBikesItemConstants';
 
 const AddComment = props => {
   const commentInputRef = useRef('');
@@ -20,7 +21,7 @@ const AddComment = props => {
     event.preventDefault();
 
     props.onDispatchBikes({
-        type: 'ADD_COMMENT', 
+        type: ADD_COMMENT, 
         id: event.target.id, 
         value: commentInputRef.current.value, 
         user: authContextCurrentUser,

@@ -10,6 +10,7 @@ import ErrorModal from "../UI/ErrorModal";
 import ratingsColor from '../../helpers/ratingColor';
 import FullScreenImg from "../UI/FullScreenImg";
 import reducerBikesItem from './reducerBikesItem';
+import { FILTER, IS_COMMENT, COMMENT, HIDE_COMMENT, SEND_RATING } from '../../constants/reducerBikesItemConstants';
 
 const BikeItem = props => {
     const { bikes: propsBikes } = props;
@@ -26,26 +27,26 @@ const BikeItem = props => {
     }, [sendRequest]);
 
     useEffect(() => {
-        dispatchBikes({type: 'FILTER', filterBikes: propsBikes.bikes});
+        dispatchBikes({type: FILTER, filterBikes: propsBikes.bikes});
     }, [propsBikes])
 
     const isCommentHandler = event => {
-        dispatchBikes({type: 'IS_COMMENT', id: event.target.id});
+        dispatchBikes({type: IS_COMMENT, id: event.target.id});
     };
 
     const showCommentsHandler = event => {
-        dispatchBikes({type: 'COMMENT', id: event.target.id});
+        dispatchBikes({type: COMMENT, id: event.target.id});
     };
 
     const hideAddCommentHandler = event => {
         event.preventDefault();
-        dispatchBikes({type: 'HIDE_COMMENT', id: event.target.id});
+        dispatchBikes({type: HIDE_COMMENT, id: event.target.id});
     };
 
     const submitRatingHandler = event => {
         event.preventDefault();
         dispatchBikes({
-            type: 'SEND_RATING',
+            type: SEND_RATING,
             id: event.target.id,
             value: event.nativeEvent.submitter.value,
             user: authContext.currentUser,
