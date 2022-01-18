@@ -4,7 +4,7 @@ import Bike from "../UI/Bike";
 import AddComment from "../Comments/AddComment";
 import { useState, useContext, useEffect, useReducer, useCallback, Fragment } from "react";
 import AuthContext from "../../context/auth-context";
-import calcAverRating from "../../helpers/calcAverRating";
+import calcAverageRating from "../../helpers/calcAverageRating";
 import useHttp from '../../hooks/use-http';
 import ErrorModal from "../UI/ErrorModal";
 import ratingsColor from '../../helpers/ratingColor';
@@ -83,7 +83,7 @@ const BikeItem = props => {
                                     <button type='submit' name="rating" value="2">&#9733;</button>
                                     <button type='submit' name="rating" value="1">&#9733;</button>
                                 </form>
-                                <p>Rating: {calcAverRating(bike.ratings)}
+                                <p>Rating: {calcAverageRating(bike.ratings)}
                                 </p>
                             </div>
                         </div>

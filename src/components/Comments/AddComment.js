@@ -1,4 +1,4 @@
-import AddComm from '../UI/AddComm';
+import AddCommentStyle from '../UI/AddComment';
 import ButtonComment from "../UI/ButtonComment";
 import { useRef, useCallback, useContext } from "react";
 import AuthContext from "../../context/auth-context";
@@ -29,7 +29,7 @@ const AddComment = props => {
   };
 
     return(
-        <AddComm>
+        <AddCommentStyle>
             <h3 className='title'>Add Comment</h3>
             <form className='comment' onSubmit={submitCommentHandler} id={props.id}>
                 <textarea rows='5' placeholder='Comment bike.' ref={commentInputRef} />
@@ -38,7 +38,7 @@ const AddComment = props => {
                     <ButtonComment type='submit'>Add</ButtonComment>
                 </div>
             </form>
-        </AddComm>
+        </AddCommentStyle>
     );
 }
 

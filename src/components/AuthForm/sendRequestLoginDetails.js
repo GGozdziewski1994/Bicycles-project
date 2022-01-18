@@ -1,4 +1,4 @@
-const fetchData = async (url, enteredEmail, enteredPassword, token, enteredAdmin) => {
+const sendRequestLoginDetails = async (url, enteredEmail, enteredPassword, token, enteredAdmin) => {
     return await fetch(url, {
         method: 'POST',
         body:JSON.stringify({
@@ -13,4 +13,4 @@ const fetchData = async (url, enteredEmail, enteredPassword, token, enteredAdmin
     });
 }
 
-export default fetchData;
+export default sendRequestLoginDetails;

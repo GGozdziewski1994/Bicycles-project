@@ -1,4 +1,4 @@
-const calcAverRating = (ratings) => {
+const calcAverageRating = (ratings) => {
     if(ratings.length === 0) return 0;
 
     const averRating = ratings.map(item => item.rating).reduce((prev, curr) => {
@@ -8,4 +8,4 @@ const calcAverRating = (ratings) => {
     return (averRating / ratings.length).toFixed(2);
 }
 
-export default calcAverRating;
+export default calcAverageRating;

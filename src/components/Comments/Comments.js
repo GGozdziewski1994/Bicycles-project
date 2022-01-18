@@ -1,4 +1,4 @@
-import Comm from '../UI/Comm'
+import CommentStyle from '../UI/Comment'
 import ButtonComment from "../UI/ButtonComment";
 import { useRef, useCallback, useContext } from 'react';
 import AuthContext from "../../context/auth-context";
@@ -44,7 +44,7 @@ const Comments = props => {
   };
 
   return(
-    <Comm>
+    <CommentStyle>
       <h2 className='tittle'>Comments</h2>
       {comments.length > 0 ? comments.map(item => {
         const currUser = currUserContext === item.user;
@@ -85,7 +85,7 @@ const Comments = props => {
           );
         }) : <p>No Comments</p> 
       }
-    </Comm>
+    </CommentStyle>
   )
 };
 

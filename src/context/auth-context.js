@@ -7,7 +7,7 @@ const AuthContext = React.createContext({
     currentUser: '',
 });
 
-const retrieveStored = () => {
+const getAuthFromLocalStorage = () => {
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('user');
     const isAdmin = JSON.parse(localStorage.getItem('isAdmin'));
@@ -20,22 +20,22 @@ const retrieveStored = () => {
 };
 
 export const AuthContextProvider = props => {
-  const store = retrieveStored();
-  const initialState = {
+  const authFromLocalStorage = getAuthFromLocalStorage();
+  const initialAuthState = {
       token: '',
       user: '',
       isAdmin: false,
   };
 
-  if(store) {
-      initialState.token = store.token;
-      initialState.user = store.user;
-      initialState.isAdmin = store.isAdmin;
+  if(authFromLocalStorage) {
+    initialAuthState.token = authFromLocalStorage.token;
+    initialAuthState.user = authFromLocalStorage.user;
+    initialAuthState.isAdmin = authFromLocalStorage.isAdmin;
   };
   
-  const [token, setToken] = useState(initialState.token);
-  const [curUser, setCurUser] = useState(initialState.user);
-  const [isAdmin, setIsAdmin] = useState(initialState.isAdmin);
+  const [token, setToken] = useState(initialAuthState.token);
+  const [curUser, setCurUser] = useState(initialAuthState.user);
+  const [isAdmin, setIsAdmin] = useState(initialAuthState.isAdmin);
 
   const userIsLoggedIn = !!token;
 

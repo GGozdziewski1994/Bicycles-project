@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Comm = styled.div`
+const Comment = styled.div`
   margin-top: 2rem;
   padding: 1rem;
   background: #fafafa;
@@ -50,4 +50,4 @@ const Comm = styled.div`
   }
 `;
 
-export default Comm;
+export default Comment;

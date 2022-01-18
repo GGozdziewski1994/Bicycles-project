@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import SectionAuth from "../UI/SectionAuth";
 import AuthContext from "../../context/auth-context";
 import useForm from '../../hooks/use-form';
-import fetchData from './fetchData';
+import sendRequestLoginDetails from './sendRequestLoginDetails';
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 const AuthForm = () => {
@@ -61,12 +61,12 @@ const AuthForm = () => {
         setIsLoading(true);
 
         try {
-            const response = await fetchData(url, enteredEmail, enteredPassword, true, null);
+            const response = await sendRequestLoginDetails(url, enteredEmail, enteredPassword, true, null);
             if (!response.ok) throw new Error('Wrong login or password');
             const data = await response.json();
 
             if(!isLogin && enteredAdmin) {
-                const responseAdmin = await fetchData(urlAdmin, enteredEmail, null, null, enteredAdmin);
+                const responseAdmin = await sendRequestLoginDetails(urlAdmin, enteredEmail, null, null, enteredAdmin);
                 if(!responseAdmin.ok) throw new Error('Something went wrong');
             };
             
@@ -127,7 +127,7 @@ const AuthForm = () => {
                     </div>}
                     <div className='actions'>
                         {!isLoading && <button disabled={!fromIsValid}>{isLogin ? 'Login' : 'Create Account'}</button>}
-                        {isLoading && <p>Spending request...</p>}
+                        {isLoading && <p>{isLogin ? '...Requesting login' : '...Requesting new account'}</p>}
                         <button
                             type="button"
                             className='toggle'

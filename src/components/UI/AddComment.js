@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const AddComm = styled.div`
+const AddComment = styled.div`
   margin-top: 2rem;
   padding: 1rem;
   background: white;
@@ -30,4 +30,4 @@ const AddComm = styled.div`
   }
 `;
 
-export default AddComm;
+export default AddComment;
