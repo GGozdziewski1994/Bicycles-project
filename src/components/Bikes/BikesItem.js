@@ -97,10 +97,7 @@ const BikesPage = () => {
             </div>
             {isLoading && <p>...Loading</p>}
             {!isLoading && dataBikes?.bikes?.length > 0 && <BikeItem 
-                bikes={filterState?.bikes ? filterState : dataBikes}
-                onFetch={fetchBikes}
-                />
-            }
+                bikes={filterState?.bikes ? filterState : dataBikes} />}
             {isAddNew && <AddBike onCancel={cancelAddNewHandler} onAdded={addNewBike} />}
         </Bikes>
     );

@@ -1,33 +1,47 @@
 import Comm from '../UI/Comm'
 import ButtonComment from "../UI/ButtonComment";
-import { useRef, useContext } from 'react';
+import { useRef, useCallback, useContext } from 'react';
 import AuthContext from "../../context/auth-context";
+import useHttp from '../../hooks/use-http';
 
 const Comments = props => {
   const { comments, onDispatchBikes } = props;
   const commentInputRef = useRef('');
   const currUserContext = useContext(AuthContext).currentUser;
   const isAdminContext = useContext(AuthContext).isAdmin;
+  const { sendRequest } = useHttp();
+
+  const requestComment = useCallback(async (id, updateComment) => {
+    await sendRequest(`https://bikesapp-gg-default-rtdb.europe-west1.firebasedatabase.app/bikes/${id}.json`,
+        'PUT',
+        JSON.stringify(updateComment),
+    );
+  }, [sendRequest]);
 
   const isEditHandler = event => {
     onDispatchBikes({type: 'IS_EDIT', id: event.target.id, idComment: event.target.attributes.data.value});
   };
 
-  const removeComment = event => {
-    const id = event.target.id;
-    const attributesData = event.target.attributes.data.value;
-    
-    props.onRemove(id, attributesData);
-  }
+  const removeCommentHandler = event => {
+    onDispatchBikes({
+      type: 'REMOVE', 
+      id: event.target.id, 
+      idComment: event.target.attributes.data.value,
+      removeComment: requestComment,
+    });
+  };
 
-  const submitEditComment = event => {
+  const submitEditCommentHandler = event => {
     event.preventDefault();
-    const id = event.target.id;
-    const attributesData = event.target.attributes.data.value;
-    const editCommentValue = commentInputRef.current.value;
-    
-    props.onEdit(id, attributesData, editCommentValue);
-  }
+
+    onDispatchBikes({
+      type: 'EDIT',
+      id: event.target.id,
+      idComment: event.target.attributes.data.value,
+      value: commentInputRef.current.value,
+      editComment: requestComment, 
+    });
+  };
 
   return(
     <Comm>
@@ -48,13 +62,13 @@ const Comments = props => {
                   id={props.id} 
                   data={item.id} 
                   className='comment__buttons-remove' 
-                  onClick={removeComment}>Remove</ButtonComment>}
+                  onClick={removeCommentHandler}>Remove</ButtonComment>}
               </div>
             </div>}
             
             {item.isEdit && <form 
                 className='comment__form' 
-                onSubmit={submitEditComment}
+                onSubmit={submitEditCommentHandler}
                 id={props.id}
                 data={item.id}>
               <p>Comment: </p>

@@ -18,10 +18,10 @@ const BikeItem = props => {
     const { sendRequest, cleanError, error } = useHttp();
     const [showImg, setShowImg] = useState(null);
 
-    const requestItem = useCallback(async (id, item) => {
+    const requestRemoveComment = useCallback(async (id, updateComment) => {
         await sendRequest(`https://bikesapp-gg-default-rtdb.europe-west1.firebasedatabase.app/bikes/${id}.json`,
             'PUT',
-            JSON.stringify(item),
+            JSON.stringify(updateComment),
         );
     }, [sendRequest]);
 
@@ -42,35 +42,6 @@ const BikeItem = props => {
         dispatchBikes({type: 'HIDE_COMMENT', id: event.target.id});
     };
 
-    const addCommentHandler = (idBike, comment) => {
-        dispatchBikes({
-            type: 'ADD_COMMENT', 
-            id: idBike, 
-            value: comment, 
-            user: authContext.currentUser,
-            addComment: requestItem,
-        });
-    };
-
-    const removeCommentHandler = (id, attributesData) => {
-        dispatchBikes({
-            type: 'REMOVE', 
-            id: id, 
-            idComment: attributesData,
-            removeComment: requestItem,
-        });
-    };
-
-    const editCommentHandler = (id, attributesData, editCommentValue) => {
-        dispatchBikes({
-            type: 'EDIT',
-            id: id,
-            idComment: attributesData,
-            value: editCommentValue,
-            editComment: requestItem, 
-        });
-    };
-
     const submitRatingHandler = event => {
         event.preventDefault();
         dispatchBikes({
@@ -78,7 +49,7 @@ const BikeItem = props => {
             id: event.target.id,
             value: event.nativeEvent.submitter.value,
             user: authContext.currentUser,
-            addRating: requestItem,
+            addRating: requestRemoveComment,
         });
     };
 
@@ -123,14 +94,12 @@ const BikeItem = props => {
                     {bike.isAddComment && <AddComment 
                         id={bike.id} 
                         hideAddComment={hideAddCommentHandler} 
-                        addComment={addCommentHandler}
+                        onDispatchBikes={dispatchBikes}
                         />
                     }
                     {bike.isComment && <Comments 
                         id={bike.id} 
                         comments={bike.comments} 
-                        onRemove={removeCommentHandler} 
-                        onEdit={editCommentHandler}
                         onDispatchBikes={dispatchBikes}
                         />
                     }
