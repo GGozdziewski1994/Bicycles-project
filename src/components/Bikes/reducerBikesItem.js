@@ -1,6 +1,6 @@
-import updateItem from '../../helpers/updateItem';
-import getIdComment from "../../helpers/getIdComment";
-import createIdComment from "../../helpers/createIdComment";
+import updateItem from './updateItem';
+import getIdComment from "./getIdComment";
+import createIdComment from "./createIdComment";
 import { FILTER, IS_COMMENT, COMMENT, ADD_COMMENT, HIDE_COMMENT, SEND_RATING, EDIT, IS_EDIT, REMOVE } from '../../constants/reducerBikesItemConstants';
 
 const reducerBikesItem = (state, action) => {
