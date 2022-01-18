@@ -14,10 +14,11 @@ React Router
 https://bicycles-project.netlify.app/
 
 ## Clone the repository using Git Bush
-In the command lin, type: $ git clone [ link to repository ]
+In the command lin, type: $ git clone [ link to repository ].
 
 ## Build the project locally
-In the command line, type: $ npm run build
+In the command line of the project folder, type: $ npm run build.
 
 ## Run project locally
-In the command line, type: $ npm start
+In the command line of the project folder, type: $ npm run start.
+The page opens automatically in the user's browser
