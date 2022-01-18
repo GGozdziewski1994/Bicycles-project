@@ -96,7 +96,7 @@ const AddBike = props => {
                         {priceInputHasError && <p className='control-error'>Price can not be empty</p>}
                     </div>
                     <div className={classNameImg}>
-                        <label>Img</label>
+                        <label>Img URL</label>
                         <input 
                             type='text' 
                             id='img' 

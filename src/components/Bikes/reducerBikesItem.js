@@ -35,6 +35,7 @@ const reducerBikesItem = (state, action) => {
         updateBikes[index].comments.push({ user: action.user, comment: action.value, isEdit: false, id: createIdComment(action.value) });
         const updateComm = updateItem(updateBikes[index]);
         action.addComment(action.id, updateComm);
+        updateBikes[index].isAddComment = false;
         return {...state, bikes: updateBikes}
     }
     if(action.type === 'REMOVE') {

@@ -58,7 +58,7 @@ const BikesPage = () => {
                     ratings: p[1].ratings ? p[1].ratings : [],
                 }
             });
-            setDataBikes({bikes: bike});
+            setDataBikes({bikes: bike.reverse()});
         }
     }, [isLoading, error, data]);
 

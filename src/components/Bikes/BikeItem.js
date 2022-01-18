@@ -23,7 +23,6 @@ const BikeItem = props => {
             'PUT',
             JSON.stringify(item),
         );
-        props.onFetch();
     }, [sendRequest]);
 
     useEffect(() => {

@@ -62,7 +62,7 @@ const AuthForm = () => {
 
         try {
             const response = await fetchData(url, enteredEmail, enteredPassword, true, null);
-            if (!response.ok) throw new Error('Something went wrong');
+            if (!response.ok) throw new Error('Wrong login or password');
             const data = await response.json();
 
             if(!isLogin && enteredAdmin) {
