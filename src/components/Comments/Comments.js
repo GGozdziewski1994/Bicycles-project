@@ -1,23 +1,14 @@
 import CommentStyle from '../UI/Comment'
 import ButtonComment from "../UI/ButtonComment";
-import { useRef, useCallback, useContext } from 'react';
+import { useRef, useContext } from 'react';
 import AuthContext from "../../context/auth-context";
-import useHttp from '../../hooks/use-http';
 import { EDIT, IS_EDIT, REMOVE } from '../../constants/reducerBikesItemConstants';
 
 const Comments = props => {
-  const { comments, onDispatchBikes } = props;
+  const { comments, onDispatchBikes, onRequestItem } = props;
   const commentInputRef = useRef('');
   const currUserContext = useContext(AuthContext).currentUser;
   const isAdminContext = useContext(AuthContext).isAdmin;
-  const { sendRequest } = useHttp();
-
-  const requestComment = useCallback(async (id, updateComment) => {
-    await sendRequest(`https://bikesapp-gg-default-rtdb.europe-west1.firebasedatabase.app/bikes/${id}.json`,
-        'PUT',
-        JSON.stringify(updateComment),
-    );
-  }, [sendRequest]);
 
   const isEditHandler = event => {
     onDispatchBikes({type: IS_EDIT, id: event.target.id, idComment: event.target.attributes.data.value});
@@ -28,7 +19,7 @@ const Comments = props => {
       type: REMOVE, 
       id: event.target.id, 
       idComment: event.target.attributes.data.value,
-      removeComment: requestComment,
+      removeComment: onRequestItem,
     });
   };
 
@@ -40,7 +31,7 @@ const Comments = props => {
       id: event.target.id,
       idComment: event.target.attributes.data.value,
       value: commentInputRef.current.value,
-      editComment: requestComment, 
+      editComment: onRequestItem, 
     });
   };
 

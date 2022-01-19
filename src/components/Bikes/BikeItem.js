@@ -19,7 +19,7 @@ const BikeItem = props => {
     const { sendRequest, cleanError, error } = useHttp();
     const [showImg, setShowImg] = useState(null);
 
-    const requestRemoveComment = useCallback(async (id, updateComment) => {
+    const requestItem = useCallback(async (id, updateComment) => {
         await sendRequest(`https://bikesapp-gg-default-rtdb.europe-west1.firebasedatabase.app/bikes/${id}.json`,
             'PUT',
             JSON.stringify(updateComment),
@@ -50,7 +50,7 @@ const BikeItem = props => {
             id: event.target.id,
             value: event.nativeEvent.submitter.value,
             user: authContext.currentUser,
-            addRating: requestRemoveComment,
+            addRating: requestItem,
         });
     };
 
@@ -96,12 +96,14 @@ const BikeItem = props => {
                         id={bike.id} 
                         hideAddComment={hideAddCommentHandler} 
                         onDispatchBikes={dispatchBikes}
+                        onRequestItem={requestItem}
                         />
                     }
                     {bike.isComment && <Comments 
                         id={bike.id} 
                         comments={bike.comments} 
                         onDispatchBikes={dispatchBikes}
+                        onRequestItem={requestItem}
                         />
                     }
                     <div className='show-comments'>

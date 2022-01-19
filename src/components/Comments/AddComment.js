@@ -1,21 +1,12 @@
 import AddCommentStyle from '../UI/AddComment';
 import ButtonComment from "../UI/ButtonComment";
-import { useRef, useCallback, useContext } from "react";
+import { useRef, useContext } from "react";
 import AuthContext from "../../context/auth-context";
-import useHttp from '../../hooks/use-http';
 import { ADD_COMMENT } from '../../constants/reducerBikesItemConstants';
 
 const AddComment = props => {
   const commentInputRef = useRef('');
   const authContextCurrentUser = useContext(AuthContext).currentUser;
-  const { sendRequest } = useHttp();
-
-  const requestAddComment = useCallback(async (id, updateComment) => {
-    await sendRequest(`https://bikesapp-gg-default-rtdb.europe-west1.firebasedatabase.app/bikes/${id}.json`,
-        'PUT',
-        JSON.stringify(updateComment),
-    );
-  }, [sendRequest]);
 
   const submitCommentHandler = event => {
     event.preventDefault();
@@ -25,7 +16,7 @@ const AddComment = props => {
         id: event.target.id, 
         value: commentInputRef.current.value, 
         user: authContextCurrentUser,
-        addComment: requestAddComment,
+        addComment: props.onRequestItem,
     });
   };
 
