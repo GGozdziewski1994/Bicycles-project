@@ -7,8 +7,8 @@ const reducerBikesItem = (state, action) => {
     const index = state.bikes.findIndex(p => p.id === action.id);
     const updateBikes = [...state.bikes];
     if(action.type === COMMENT) {
-        const comment = state.bikes[index].isComment;
-        updateBikes[index].isComment = !comment;
+        const isComment = state.bikes[index].isComment;
+        updateBikes[index].isComment = !isComment;
         return {...state, bikes: updateBikes}
     }
     if(action.type === IS_COMMENT) {
@@ -34,24 +34,24 @@ const reducerBikesItem = (state, action) => {
     }
     if(action.type === ADD_COMMENT) {
         updateBikes[index].comments.push({ user: action.user, comment: action.value, isEdit: false, id: createIdComment(action.value) });
-        const updateComm = updateItem(updateBikes[index]);
-        action.addComment(action.id, updateComm);
+        const updateComment = updateItem(updateBikes[index]);
+        action.addComment(action.id, updateComment);
         updateBikes[index].isAddComment = false;
         return {...state, bikes: updateBikes}
     }
     if(action.type === REMOVE) {
         const removeComment = updateBikes[index].comments.filter(item => item.id !== action.idComment);
         updateBikes[index].comments = removeComment;
-        const updateComm = updateItem(updateBikes[index]);
-        action.removeComment(action.id, updateComm);
+        const updateComment = updateItem(updateBikes[index]);
+        action.removeComment(action.id, updateComment);
         return{...state, bikes: updateBikes}
     }
     if(action.type === EDIT) {
         const editCommentIndex = getIdComment(updateBikes[index], action.idComment);
         const stateUser = state.bikes[index].comments[editCommentIndex].user;
         updateBikes[index].comments[editCommentIndex] = { user: stateUser, comment: action.value, isEdit: false, id: createIdComment(action.value) };
-        const updateComm = updateItem(updateBikes[index]);
-        action.editComment(action.id, updateComm);
+        const updateComment = updateItem(updateBikes[index]);
+        action.editComment(action.id, updateComment);
         return{...state, bikes: updateBikes}
     }
     if(action.type === IS_EDIT) {
