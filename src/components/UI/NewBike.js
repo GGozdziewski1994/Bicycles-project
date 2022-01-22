@@ -41,6 +41,12 @@ const NewBike = styled.div`
     border-color: #b40e0e;
     background-color: #fddddd;
   }
+
+  @media only screen and (max-width: 500px) {
+    & .model {
+      padding: 1rem;
+    }
+  }
 `;
 
 export default NewBike;
