@@ -11,7 +11,13 @@ export const Bikes = styled.section`
     margin-bottom: 2rem;
     border-bottom: solid 1px white;
   }
+
+  @media only screen and (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
+
+
 
 export const ButtonFilter = styled.button`
   margin-right: 1rem;

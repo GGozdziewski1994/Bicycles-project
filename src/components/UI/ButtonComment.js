@@ -20,6 +20,14 @@ export const ButtonComment = styled.button`
     color: white;
     cursor: not-allowed; 
   }
+
+  @media only screen and (max-width: 768px) {
+    padding: 0.35rem 0.6rem;
+  }
+
+  @media only screen and (max-width: 425px) {
+    margin-left: 0;
+  }
 `;
 
 export default ButtonComment;

@@ -26,6 +26,21 @@ const FullScreen = styled.div`
         width: 100%;
         height: 100%;
     }
+
+    @media only screen and (max-width: 768px) {
+        & .modal {
+            width: 400px;
+            height: 300px;
+            &__btn {
+                top: 0;
+                right: 0.25rem;
+            }
+        }
+
+        & img {
+            padding: 1rem;
+        }
+    }    
 `;
 
 const FullScreenImg = props => {

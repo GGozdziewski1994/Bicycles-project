@@ -11,7 +11,6 @@ const AddComment = styled.div`
   }
   & .comment {
     display: grid;
-    grid-template-columns: 60% 40%;
     padding: 0.5rem;
     & textarea {
       grid-column: span 2;
@@ -26,6 +25,29 @@ const AddComment = styled.div`
       grid-column: 2;
       text-align: end;
       margin-top: 1rem;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    margin-top: 1.5rem;
+    padding: 0.5rem 0;
+
+    & .title {
+      margin-bottom: 0.5rem;
+    }
+
+    & .comment {
+      padding: 0 0.5rem;
+    }
+  }
+
+  @media only screen and (max-width: 425px) {
+    margin-top: 1rem;
+
+    & .comment__button {
+      grid-column: 2 span;
+      display: flex;
+      justify-content: space-between;
     }
   }
 `;

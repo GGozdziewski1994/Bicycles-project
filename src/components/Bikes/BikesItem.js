@@ -25,7 +25,7 @@ const reducerFilter = (state, action) => {
     return{...state}
 };
 
-const BikesPage = () => {
+const BikesItem = () => {
     const [isAddNew, setIsAddNew] = useState(false);
     const { isLoading, error, data, sendRequest, cleanError } = useHttp();
     const [filterState, dispatchFilter] = useReducer(reducerFilter, {});
@@ -97,11 +97,11 @@ const BikesPage = () => {
                 </div>}
             </div>
             {isLoading && <p>...Loading</p>}
-            {!isLoading && dataBikes?.bikes?.length > 0 && <BikeItem 
+            {!isLoading && dataBikes?.bikes?.length > 0 && <BikeItem
                 bikes={filterState?.bikes ? filterState : dataBikes} />}
             {isAddNew && <AddBike onCancel={cancelAddNewHandler} onAdded={addNewBike} />}
         </Bikes>
     );
 };
 
-export default BikesPage;
+export default BikesItem;

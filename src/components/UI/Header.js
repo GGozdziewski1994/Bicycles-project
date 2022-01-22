@@ -30,6 +30,10 @@ const Header = styled.header`
       margin: 0 1rem;
     }
   }
+
+  @media only screen and (max-width: 768px) {
+    padding: 0 1rem;
+  }
 `;
 
 export default Header;

@@ -10,8 +10,8 @@ const Bike = styled.div`
     display: grid;
     &__img {
       grid-row: 1 / span 2;
-      width: 200px;
-      height: 200px;
+      max-width: 200px;
+      max-height: 200px;
       & img {
         width: 100%;
         height: 100%;
@@ -59,7 +59,7 @@ const Bike = styled.div`
       display: flex;
       justify-content: right;
       align-items: end;
-      padding: 0.5rem;
+      padding: 0.5rem 0;
       & button {
         padding: 0.5rem 1rem;
         border: none;
@@ -84,6 +84,56 @@ const Bike = styled.div`
       cursor: pointer;
       &:hover {
         opacity: 1;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    & .bike {
+      &__img {
+        min-width: 150px;
+        min-height: 150px;
+      }
+
+      &__info {
+        font-size: 1rem;
+        line-height: 1.5rem;
+        &--rating {
+          & button {
+            font-size: 1.5rem;
+          }
+        }
+      }
+
+      &__add-comment {
+        & button {
+          padding: 0.35rem 0.5rem;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 425px) {
+    padding: 0.75rem 0.25rem;
+
+    & .bike {
+      display: block;
+
+      &__img {
+        margin: 0 auto;
+      }
+
+      &__info {
+        text-align: center;
+        &--rating {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+
+      &__add-comment {
+        justify-content: center;
       }
     }
   }

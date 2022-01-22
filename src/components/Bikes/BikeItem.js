@@ -68,7 +68,7 @@ const BikeItem = props => {
             {showImg !== null && <FullScreenImg onHideImg={hideImgHandler} img={showImg} />}
             {bikesState.bikes.map(bike => {
                 return (
-                    <Bike key={bike.id}>
+                    <Bike key={bike.id} role='listitem'>
                     <div className='bike'>
                         <div onClick={shwoImgHandler} className='bike__img'>
                             <img src={bike.img}/>

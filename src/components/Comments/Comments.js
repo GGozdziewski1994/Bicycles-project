@@ -37,7 +37,7 @@ const Comments = props => {
 
   return(
     <CommentStyle>
-      <h2 className='tittle'>Comments</h2>
+      <h2 className='title'>Comments</h2>
       {comments.length > 0 ? comments.map(item => {
         const currUser = currUserContext === item.user;
         return(

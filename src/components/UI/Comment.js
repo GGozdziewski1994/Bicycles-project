@@ -6,7 +6,7 @@ const Comment = styled.div`
   background: #fafafa;
   border-radius: 8px;
 
-  & .tittle {
+  & .title {
     text-align: center;
     margin-bottom: 1rem;
   }
@@ -36,7 +36,7 @@ const Comment = styled.div`
     }
     &__form {
       display: grid;
-      grid-template-columns: 10% 90%;
+      grid-template-columns: 15% 85%;
       & textarea {
         resize: none;
       }
@@ -45,6 +45,34 @@ const Comment = styled.div`
         display: flex;
         justify-content: right;
         margin-top: 1rem;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    padding: 0.5rem;
+    margin-top: 1rem;
+
+    & .comment {
+      &__form {
+        grid-template-columns: 25% 75%;
+      }
+    }
+
+    & .title {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  @media only screen and (max-width: 425px) {
+    & .comment {
+      &__buttons {
+        justify-content: space-between;
+      }
+
+      &__form-button {
+        grid-column: 2 span;
+        justify-content: space-between;
       }
     }
   }

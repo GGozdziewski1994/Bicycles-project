@@ -1,8 +1,8 @@
-import Bikes from '../components/Bikes/BikesItem';
+import BikesItem from '../components/Bikes/BikesItem';
 
 const BikesPage = () => {
     return(
-        <Bikes />
+        <BikesItem />
     );
 }
 
