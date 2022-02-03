@@ -6,6 +6,7 @@ import AuthContext from "../../context/auth-context";
 import useForm from '../../hooks/use-form';
 import sendRequestLoginDetails from './sendRequestLoginDetails';
 const API_KEY = process.env.REACT_APP_API_KEY;
+import environment from "../../environments/environment";
 
 const AuthForm = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -51,8 +52,6 @@ const AuthForm = () => {
 
         const enteredAdmin = adminInputRef.current?.checked;
 
-        const urlAdmin = 'https://bikesapp-gg-default-rtdb.europe-west1.firebasedatabase.app/admin.json';
-
         let url;
         if(isLogin) url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`;
         else url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`;
@@ -66,11 +65,11 @@ const AuthForm = () => {
             const data = await response.json();
 
             if(!isLogin && enteredAdmin) {
-                const responseAdmin = await sendRequestLoginDetails(urlAdmin, enteredEmail, null, null, enteredAdmin);
+                const responseAdmin = await sendRequestLoginDetails(environment.addAdmin, enteredEmail, null, null, enteredAdmin);
                 if(!responseAdmin.ok) throw new Error('Something went wrong');
             };
             
-            const responseFindAdmin = await fetch(urlAdmin);
+            const responseFindAdmin = await fetch(environment.getAdmin);
             if(!responseFindAdmin) throw new Error('Something went wrong');
 
             const dataFindAdmin = await responseFindAdmin.json();

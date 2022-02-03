@@ -6,6 +6,7 @@ import useHttp from "../../hooks/use-http";
 import AuthContext from "../../context/auth-context";
 import ErrorModal from "../UI/ErrorModal";
 import { ALL, MALE, FEMALE } from '../../constants/reducerFilterConstants';
+import environment from "../../environments/environment";
 
 const reducerFilter = (state, action) => {
     if(action.type === ALL) {
@@ -31,14 +32,13 @@ const BikesItem = () => {
     const [filterState, dispatchFilter] = useReducer(reducerFilter, {});
     const [dataBikes, setDataBikes] = useState({});
     const isAdminContext = useContext(AuthContext).isAdmin;
-    const url = 'https://bikesapp-gg-default-rtdb.europe-west1.firebasedatabase.app/bikes.json';
 
     const fetchBikes = useCallback(async () => {
-        await sendRequest(url, 'GET');
+        await sendRequest(environment.getAllBikes, 'GET');
     }, [sendRequest]);
 
     const addNewBike = useCallback(async enteredBike => {
-        await sendRequest(url,
+        await sendRequest(environment.addBike,
             'POST',
             JSON.stringify(enteredBike),
         );
@@ -51,12 +51,9 @@ const BikesItem = () => {
 
     useEffect(() => {
         if(!isLoading && !error && data) {
-            const bike = Object.entries(data).map(p => {
-                return  {
-                    id: p[0],
-                    ...p[1],
-                    comments: p[1].comments ? p[1].comments : [],
-                    ratings: p[1].ratings ? p[1].ratings : [],
+            const bike = data.map(p => {
+                return {
+                    ...p
                 }
             });
             setDataBikes({bikes: bike.reverse()});

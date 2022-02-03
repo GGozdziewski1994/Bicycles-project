@@ -45,11 +45,14 @@ const useHttp = () => {
 
             if(!response.ok) throw new Error('Something went wrong!');
 
-            const data = await response.json();
+            if(method === 'GET') {
+                const data = await response.json();
 
-            dispatchHttp({type: 'FETCH', data: data});
+                dispatchHttp({type: 'FETCH', data: data});
+            }
 
         } catch(error) {
+            console.log(error)
             dispatchHttp({type: 'ERROR', error: error.message});
         }
     }, []);

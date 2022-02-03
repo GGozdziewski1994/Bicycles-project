@@ -11,6 +11,7 @@ import ratingsColor from './ratingColor';
 import FullScreenImg from "../UI/FullScreenImg";
 import reducerBikesItem from './reducerBikesItem';
 import { FILTER, IS_COMMENT, COMMENT, HIDE_COMMENT, SEND_RATING } from '../../constants/reducerBikesItemConstants';
+import environment from "../../environments/environment";
 
 const BikeItem = props => {
     const { bikes: propsBikes } = props;
@@ -20,7 +21,7 @@ const BikeItem = props => {
     const [showImg, setShowImg] = useState(null);
 
     const requestItem = useCallback(async (id, updateComment) => {
-        await sendRequest(`https://bikesapp-gg-default-rtdb.europe-west1.firebasedatabase.app/bikes/${id}.json`,
+        await sendRequest(environment.updateBike + '/' + id,
             'PUT',
             JSON.stringify(updateComment),
         );
