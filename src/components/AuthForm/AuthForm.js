@@ -8,12 +8,10 @@ import sendRequestLoginDetails from './sendRequestLoginDetails';
 import environment from "../../environments/environment";
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-
 const AuthForm = () => {
     const [isLogin, setIsLogin] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
-    const adminInputRef = useRef('');
     const navigate = useNavigate();
     const authContext = useContext(AuthContext);
     const {
@@ -51,8 +49,6 @@ const AuthForm = () => {
     const submitHandler = async event => {
         event.preventDefault();
 
-        const enteredAdmin = adminInputRef.current?.checked;
-
         let url;
         if(isLogin) url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`;
         else url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`;
@@ -64,11 +60,6 @@ const AuthForm = () => {
             const response = await sendRequestLoginDetails(url, enteredEmail, enteredPassword, true, null);
             if (!response.ok) throw new Error('Wrong login or password');
             const data = await response.json();
-
-            if(!isLogin && enteredAdmin) {
-                const responseAdmin = await sendRequestLoginDetails(environment.addAdmin, enteredEmail, null, null, enteredAdmin);
-                if(!responseAdmin.ok) throw new Error('Something went wrong');
-            };
             
             const responseFindAdmin = await fetch(environment.getAdmin);
             if(!responseFindAdmin) throw new Error('Something went wrong');
@@ -121,10 +112,6 @@ const AuthForm = () => {
                         />
                         {passwordInputHasError && <p className="control-error">Password must be min 6 signs</p>}
                     </div>
-                    {!isLogin && <div className='control-admin'>
-                        <input id='admin' type='checkbox' value='admin' ref={adminInputRef}/>
-                        <label htmlFor='admin'>Administrator</label>
-                    </div>}
                     <div className='actions'>
                         {!isLoading && <button disabled={!fromIsValid}>{isLogin ? 'Login' : 'Create Account'}</button>}
                         {isLoading && <p>{isLogin ? '...Requesting login' : '...Requesting new account'}</p>}
