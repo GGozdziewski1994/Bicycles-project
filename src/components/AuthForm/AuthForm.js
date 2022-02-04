@@ -5,8 +5,9 @@ import SectionAuth from "../UI/SectionAuth";
 import AuthContext from "../../context/auth-context";
 import useForm from '../../hooks/use-form';
 import sendRequestLoginDetails from './sendRequestLoginDetails';
-const API_KEY = process.env.REACT_APP_API_KEY;
 import environment from "../../environments/environment";
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 
 const AuthForm = () => {
     const [isLogin, setIsLogin] = useState(true);
