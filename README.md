@@ -8,7 +8,8 @@ Styled components,
 CSS Modules, 
 JavaScript,
 React.js,
-React Router
+React Router,
+Express.js
 
 ## Link to Netlify
 https://bicycles-project.netlify.app/
